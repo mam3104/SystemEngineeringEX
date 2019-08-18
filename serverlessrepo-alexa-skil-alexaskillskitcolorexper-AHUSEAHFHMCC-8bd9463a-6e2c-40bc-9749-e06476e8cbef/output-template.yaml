@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Demonstrates a basic skill built with the Amazon Alexa Skills Kit.
+Parameters:
+  TopicNameParameter:
+    Type: String
+Resources:
+  alexaskillskitcolorexpertpython:
+    Properties:
+      CodeUri: s3://aws-sar-publishing/6149539ac1b817cb1d52fa5ab04e4dd0
+      Description: Demonstrates a basic skill built with the Amazon Alexa Skills Kit.
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill
+      Handler: lambda_function.lambda_handler
+      MemorySize: 128
+      Policies:
+      - SNSPublishMessagePolicy:
+          TopicName:
+            Ref: TopicNameParameter
+      Runtime: python2.7
+      Timeout: 3
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
